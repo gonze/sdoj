@@ -1,6 +1,6 @@
 <?php
-define('OJ_NAME', 'Codgic');
-define('OJ_COPYRIGHT', '(C) 2015 - 2017 Codgic Team and Contributors');
+define('OJ_NAME', 'SDOJ');
+define('OJ_COPYRIGHT', '(C) 2017 - 2017 ');
 define('CONTACT_EMAIL', 'info@codgi.cf');
 
 /*
@@ -11,8 +11,8 @@ define('CONTACT_EMAIL', 'info@codgi.cf');
 * Please ensure that PHP has the permission to R/W in the directory you've defined.
 */
 define('POSTMESSAGE_LOCK', '/tmp/codgic_message.lock');
-
-define('DISPLAY_LANGUAGE', 'en_US');
+define('DISPLAY_LANGUAGE', 'zh_CH');
+//define('DISPLAY_LANGUAGE', 'en_US');
 // If this option is set to `true`, all users will have to login to access the whole website.
 define('ACCESS_REQUIRES_LOGIN', false);
 // If this option is set to `true`, all newly registered users will be disabled and have to be enabled manually.
@@ -33,8 +33,8 @@ define('MATHJAX_TEX_BEGIN',  '[tex]');
 define('MATHJAX_TEX_END',  '[/tex]');
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'codgic');
-define('DB_USER', 'codgic');
+define('DB_NAME', 'SDOJ');
+define('DB_USER', 'root');
 define('DB_PASSWORD', 'YOURPASSWORD');
 define('DB_CHARSET', 'utf8mb4');
 
@@ -42,12 +42,12 @@ define('SMTP_SERVER', '');
 define('SMTP_PORT', 999);
 define('SMTP_USER', '');
 define('SMTP_PASSWORD', '');
-define('SMTP_DISPLAY', 'Codgic');
+define('SMTP_DISPLAY', 'SDOJ');
 
 define("GRAVATAR_CDN",  '//cdn.v2ex.com/gravatar');
 
 // Please change your cookie key to a random value.
-define("COOKIE_KEY", "C0DG1C_HELLO_WORLD!");
+define("COOKIE_KEY", "SDOJ_HELLO_WORLD!");
 define("COOKIE_EXPIRE", 31536000);
 // define("BIND_DOMAIN", '.example.com');
 
