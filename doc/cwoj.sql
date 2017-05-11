@@ -16,6 +16,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cwoj`
 --
+CREATE DATABASE SDOJ CHARACTER SET utf8;
+use SDOJ;
 
 DELIMITER $$
 --
@@ -151,15 +153,15 @@ CREATE TABLE `experience_titles` (
 --
 
 INSERT INTO `experience_titles` (`experience`, `title`) VALUES
-(-999999, '张柯'),
-(1, '小咸鱼'),
-(75, '咸鱼'),
-(150, '大咸鱼'),
-(2048, '银蛤蟆'),
-(0, ''),
-(19260817, '长者'),
-(8192, '金蛤蟆'),
-(350, '铜蛤蟆');
+(-999999, '太弱'),
+(1, '虾米'),
+(75, '牛犊'),
+(150, '小牛'),
+(2048, '神牛'),
+(0, '单细胞'),
+(19260817, 'GOD'),
+(8192, '牛犇'),
+(350, '大牛');
 
 -- --------------------------------------------------------
 
@@ -246,7 +248,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`news_id`, `author`, `title`, `content`, `time`, `importance`, `privilege`, `defunct`) VALUES
-(1, 'root', '欢迎来到CWOJ', '<b>CWOJ - 一个开源且毫无特色并且随时收到水王洪水威胁的信息竞赛刷题系统，现已向校内外同学开放~~~ 祝大家在这里玩得愉快！</b><hr>CWOJ Team:\r<br>jimmy19990: CWOJ前/后端\r<br>Void: CWOJ题库管理\r<br>dreamfly:一条出口咸鱼', '2015-12-12 18:45:21', 0, 0, 0),
+(1, 'root', '欢迎来到SDOJ', '<b>SDOJ 祝大家在这里玩得愉快！</b>', '2015-12-12 18:45:21', 0, 0, 0),
 (0, NULL, NULL, '<div class="text-center"><div style="font-size:28px"><b>Welcome to CWOJ</b></div><div style="font-size:18px">Built for you to code your future.</div></div>', NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -399,7 +401,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `submit`, `solved`, `score`, `experience`, `ip`, `accesstime`, `volume`, `language`, `password`, `reg_time`, `nick`, `school`, `motto`, `privilege`) VALUES
-('root', 'cwoj@hello.world', 0, 0, 0, 0, '', '1970-01-01 00:00:00', 1, 0, 'CWOJUser125', '1970-01-01 00:00:00', 'admin', '', 'I\'m an evil administrator.', 31);
+('root', 'sdoj@hello.world', 0, 0, 0, 0, '', '1970-01-01 00:00:00', 1, 0, 'sdojpassword', '1970-01-01 00:00:00', 'admin', '', 'I\'m an evil administrator.', 31);
 
 -- --------------------------------------------------------
 
