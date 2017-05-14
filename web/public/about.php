@@ -19,52 +19,12 @@ $Title=$inTitle .' - '. $oj_name;
                     <div>
                         <p>
                             <?php
-                                echo _('Codgic (previously CWOJ) is a Free, <a href="https://github.com/Codgic">Open-source</a> Online Judge Solution designed for OI trainings, based on Bashu OnlineJudge. 
-                                Started on 11/20/2015, we keep seeking a better OJ solution for individuals, schools and other educational organizations.');
+                                echo _('SDOJ.');
                             ?>
                         </p>
                     </div>
-                    <hr>
-                    <div>
-                        <p><b><?php echo _('Version')?></b><p>
-                        <table class="table table-bordered table-condensed table-last-left-aligned">
-                            <tbody>
-                                <tr>
-                                    <td style="width:20%"><?php echo _('Web')?></td>
-                                    <td><?php echo $web_ver?></td>
-                                </tr>
-                                <tr>
-                                    <td><?php echo _('Daemon')?></td>
-                                    <td><?php echo $daemon_ver?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p><b><?php echo _('Codgic Team')?></b></p>
-                        <table class="table table-bordered table-condensed table-last-left-aligned">
-                            <tbody>
-                                <tr>
-                                    <td style="width:20%">jimmy19990</td>
-                                    <td><?php echo _('Codgic Web Developer.')?></td>
-                                </tr>
-                                <tr>
-                                    <td>Void</td>
-                                    <td><?php echo _('Codgic Content (Problems & Contests) Manager.')?></td>
-                                </tr>
-                                <tr>
-                                    <td>t123yh</td>
-                                    <td><?php echo _('Codgic Web & Daemon Developer and Maintainer.')?></td>
-                                </tr>
-                                <tr>
-                                    <td>zhangyutong926</td>
-                                    <td><?php echo _('Codgic Daemon Developer.')?></td>
-                                </tr>
-                                <tr>
-                                    <td>dreamfly</td>
-                                    <td><?php echo _('An exported Salted Fish.')?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+
                 </div>
             </div>
             <div class="row">

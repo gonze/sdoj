@@ -1,12 +1,6 @@
-# Codgic Laverne (1.0)
+# FROM Codgic Laverne
 
-![Codgic](https://raw.githubusercontent.com/Codgic/codgic-web/master/web/public/assets/res/codgic.png)
 
-Codgic (previously CWOJ) is a free, open-source Online Judge Solution designed for OI trainings. Ever since 11/20/2015, we have kept seeking a better OJ solution for individuals, schools and other educational organizations.
-
-Laverne, the middle name of Judy Hopps from the movie "Zootopia", represents the spirit of trying everything and not fearing failures. That drives me through everything that seemed difficult or even impossible.
-     
-Notes: 1.x is still in early development stage, meaning it contains loads of half-done codes and is for evaluation purpose only.
 
 ## Branches
 - master: Current development branch (1.0-Laverne).

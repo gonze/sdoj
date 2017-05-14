@@ -277,6 +277,7 @@ $Title=$inTitle .' - '. $oj_name;
                 </div>
             </div>
       
+
             <div class="modal fade" id="PrivModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -313,6 +314,10 @@ $Title=$inTitle .' - '. $oj_name;
                     </div>
                 </div>
             </div>
+
+
+
+		
       
             <div class="modal fade" id="UserModal">
                 <div class="modal-dialog">
@@ -693,6 +698,7 @@ $Title=$inTitle .' - '. $oj_name;
                     });
                     return false;
                 });
+
                 $('#form_email').submit(function(E){
                     E.preventDefault();
                     $('#email_res').removeClass('alert-danger').addClass('alert-info').html('<i class="fa fa-circle-o-notch fa-fw fa-spin"></i> <?php echo _('Sending...')?>').slideDown();

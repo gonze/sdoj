@@ -57,17 +57,10 @@ msgstr "关于"
 
 #: about.php:22
 msgid ""
-"Codgic (previously CWOJ) is a Free, <a href=\"https://github.com/Codgic"
-"\">Open-source</a> Online Judge Solution designed for OI trainings, based on "
-"Bashu OnlineJudge. \n"
-"                                Started on 11/20/2015, we keep seeking a "
-"better OJ solution for individuals, schools and other educational "
-"organizations."
+"SDOJ."
 msgstr ""
-"Codgic（原名CWOJ）是一个免费，<a href=\"https://github.com/Codgic/\">开源</a>"
-"且为信息竞赛设计的在线评测系统，基于Bashu OnlineJudge二次开发。\n"
-"起始于2015年11月20日，我们一直致力于寻求一个更好的面向于个人，学校以及其他教"
-"育机构的在线评测解决方案。"
+"SDOJ是基于bsoj，cwoj改变而成，为校园内部使用"
+"起始于2017年5月10日，我们一直致力于为学校提供在线评测解决方案。"
 
 #: about.php:29
 msgid "Version"
@@ -977,7 +970,7 @@ msgstr "训练模式"
 
 #: contestpage.php:65
 msgid "CWOJ"
-msgstr "CWOJ赛制"
+msgstr "SDOJ赛制"
 
 #: contestpage.php:68 editcontest.php:145
 msgid "ACM-like"
@@ -1031,11 +1024,11 @@ msgstr ""
 
 #: contestpage.php:200
 msgid "Accepted"
-msgstr "已AC"
+msgstr "Accepted"
 
 #: contestpage.php:202
 msgid "Not Accepted"
-msgstr "未AC"
+msgstr "Not Accepted"
 
 #: contestpage.php:232 contestpage.php:289
 msgid "Rankings"
@@ -1343,8 +1336,8 @@ msgid ""
 "which cannot guarantee an enjoyable experience in Codgic. You have to "
 "upgrade your browser before accessing Codgic."
 msgstr ""
-"我们很遗憾地告诉你你正使用着一个无法保证愉悦Codgic体验的老旧浏览器。在继续访"
-"问Codgic前你将不得不升级你的浏览器。"
+"我们很遗憾地告诉你你正使用着一个无法保证愉悦体验的老旧浏览器。在继续访"
+"问你将不得不升级你的浏览器。"
 
 #: fuckie.php:39
 msgid "Modern browsers"
@@ -1534,7 +1527,7 @@ msgstr "密码..."
 
 #: login.php:35
 msgid "Say you'll remember me..."
-msgstr "记住我清秀的脸面..."
+msgstr "记住我的脸面..."
 
 #: login.php:42 signup.php:23
 msgid "Sign up"
@@ -1852,7 +1845,7 @@ msgstr "一个有效的邮箱会为你带来很多便利..."
 
 #: profile.php:92
 msgid "Make your school proud..."
-msgstr "让你的学校为你骄傲..."
+msgstr "让学校为你骄傲..."
 
 #: profile.php:96
 msgid "Current password"

@@ -1,13 +1,7 @@
 <?php
-/**
-* CWOJ Global Initialization
-*
-* Hello World!
-*
-*/
-
-//Obtain Absolute Path
 require __DIR__.'/../conf/ojsettings.php';
+
+
 define("OJDIR", substr(__DIR__,0,-3));
 
 session_start();

@@ -8,15 +8,36 @@ function check_id(&$str,&$t){
     else if($t==3) $type='wiki';
     else return;
     
-    require __DIR__.'../src/database.php';
-    if(preg_match('/\D/',$str))
+
+  if(preg_match('/\D/',$str))
         return;
+
+require_once __DIR__ . '/../config/config.php';
+
+if(!$con){//这里本来要require database.php，但出现啦bug，以后解决
+	$con= mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+
+	if(!$con){
+   		 echo 'Can not connect to mysql!';
+    		throw new Exception('Can not connect to mysql: ' . mysqli_connect_error());
+	}
+
+	mysqli_select_db($con, DB_NAME);
+	mysqli_set_charset($con, DB_CHARSET);
+}
+
+
+
+
+
+
     $num=intval($str);
-        
+   
     if(mysqli_num_rows(mysqli_query($con,'select '.$type.'_id from '.$type.' where '.$type.'_id='.$num))){
         header('location: '.$type.'page.php?'.$type.'_id='.$num);
         exit();
     }
+
 }
 
 if(!isset($_GET['q'])||empty($_GET['q']))
@@ -44,12 +65,28 @@ if(!isset($_GET['q'])||empty($_GET['q']))
 else if(strlen($req)>600)
     $info=_('The keyword entered is too long');
 else{
+
     require __DIR__.'/func/checklogin.php';
-    require __DIR__.'../src/database.php';
-    require __DIR__.'/lib/problem_flags.php';
+   
+    require_once __DIR__ . '/../config/config.php';//这里本来要require database.php，但出现啦bug，以后解决
+  	if(!$con){
+	$con= mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+
+	if(!$con){
+    		echo 'Can not connect to mysql!';
+    		throw new Exception('Can not connect to mysql: ' . mysqli_connect_error());
+	}
+
+	mysqli_select_db($con, DB_NAME);
+	mysqli_set_charset($con, DB_CHARSET);
+	
+   }	
+ $keyword=mysqli_real_escape_string($con,trim(urldecode($req)));
     
-    $keyword=mysqli_real_escape_string($con,trim(urldecode($req)));
-    
+
+
+
+
     $addt_cond='';
     if(!check_priv(PRIV_PROBLEM))
         $addt_cond.="and defunct='N' ";
@@ -58,23 +95,26 @@ else{
     
     switch($type){
         case 1:
-            check_id($req,$type);
-            if(isset($_SESSION['user'])){
+
+            check_id($req,$type);//bebug20170512
+            if(isset($_SESSION['user'])){//echo "debug1";
                 $user_id=$_SESSION['user'];
                 $result=mysqli_query($con,"SELECT problem_id,title,source,accepted,submit,res,tags from
                 (select problem.problem_id,title,source,tags,defunct,accepted,submit,has_tex from problem left join user_notes on (user_id='$user_id' and user_notes.problem_id=problem.problem_id))pt
                 LEFT JOIN (select problem_id as pid,MIN(result) as res from solution where user_id='$user_id' and problem_id group by problem_id) as temp on(pid=problem_id)
                 where (title like '%$keyword%' or source like '%$keyword%' or tags like '%$keyword%') ".$addt_cond."
                 order by problem_id limit ".(($page_id-1)*20).",20");
-            }else{
+           
+	 }else{
                 $result=mysqli_query($con,"SELECT problem_id,title,source,accepted,submit,defunct from
                 problem
                 where defunct='N' and (title like '%$keyword%' or source like '%$keyword%') ".$addt_cond."
                 order by problem_id limit ".(($page_id-1)*20).",20");
             }
+
             break;
         case 2:
-            check_id($req,$type);
+            check_id($req,$type);//bebug20170512
             if(isset($_SESSION['user'])){
                 $user_id=$_SESSION['user'];
                 $result=mysqli_query($con,"SELECT contest_id,title,source,res,start_time,end_time,defunct from contest
@@ -88,7 +128,7 @@ else{
             }
             break;
         case 3:
-            check_id($req,$type);
+            check_id($req,$type);//bebug20170512
             $result=mysqli_query($con,"select wiki_id,title,tags,revision,in_date from wiki 
             where is_max='Y' and title like '%$keyword%' or tags like '%$keyword%'
             order by wiki_id desc limit ".(($page_id-1)*20).",20");
@@ -99,6 +139,7 @@ else{
             order by solved desc limit ".(($page_id-1)*20).",20");
             break;
     }
+
     if(mysqli_num_rows($result)==0) 
         $info=_('Looks like we can\'t find what you want');
 }

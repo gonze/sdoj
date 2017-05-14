@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/../inc/init.php';
+echo "debug";
 
 if(!isset($_POST['uid']) || !isset($_POST['pwd'])){
     echo _('Wrong Username/Password...');

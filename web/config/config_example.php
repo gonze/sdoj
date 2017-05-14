@@ -1,7 +1,7 @@
 <?php
 define('OJ_NAME', 'SDOJ');
 define('OJ_COPYRIGHT', '(C) 2017 - 2017 ');
-define('CONTACT_EMAIL', 'info@codgi.cf');
+define('CONTACT_EMAIL', 'info@sdsy.net');
 
 /*
 * Temporary Location
@@ -10,7 +10,7 @@ define('CONTACT_EMAIL', 'info@codgi.cf');
 * This acts as the mutex lock, which is necessary for message board to work.
 * Please ensure that PHP has the permission to R/W in the directory you've defined.
 */
-define('POSTMESSAGE_LOCK', '/tmp/codgic_message.lock');
+define('POSTMESSAGE_LOCK', '/tmp/sdoj_message.lock');
 define('DISPLAY_LANGUAGE', 'zh_CH');
 //define('DISPLAY_LANGUAGE', 'en_US');
 // If this option is set to `true`, all users will have to login to access the whole website.
@@ -33,8 +33,8 @@ define('MATHJAX_TEX_BEGIN',  '[tex]');
 define('MATHJAX_TEX_END',  '[/tex]');
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'SDOJ');
-define('DB_USER', 'root');
+define('DB_NAME', 'dataname');
+define('DB_USER', 'mysqluser');
 define('DB_PASSWORD', 'YOURPASSWORD');
 define('DB_CHARSET', 'utf8mb4');
 

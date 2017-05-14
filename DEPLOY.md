@@ -1,12 +1,12 @@
-# 部署 CWOJ
+# 部署 
 
 ## 安装依赖项
-CWOJ 需要你安装以下项目来完成依赖项的构建：
+需要你安装以下项目来完成依赖项的构建：
 * node.js ( >= 6.0 )
 * webpack ( >= 2.0 )
 * composer ( >= 1.3 )
 
-其中，composer 用于安装 Mathjax。
+其中，composer 用于安装 一些CSS， Mathjax。下面提供打setup文件来自镜像，你懂得，也可以换成官方打。
 
 如果你使用 Ubuntu，你可以使用如下操作来完成安装：
 ```bash
@@ -19,7 +19,7 @@ sudo apt update
 sudo apt install -y nodejs yarn
 sudo npm install webpack -g
 
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
@@ -33,7 +33,7 @@ yarn # 下载依赖项
 webpack # 发布脚本到 web 目录
 
 # 假设你的 composer 可执行文件名为 `composer.phar`
-composer.phar install
+./composer.phar install
 ```
 
 ## 部署

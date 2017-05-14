@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cwoj`
+-- Database: `sdoj`
 --
 CREATE DATABASE SDOJ CHARACTER SET utf8;
 use SDOJ;
@@ -401,7 +401,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `submit`, `solved`, `score`, `experience`, `ip`, `accesstime`, `volume`, `language`, `password`, `reg_time`, `nick`, `school`, `motto`, `privilege`) VALUES
-('root', 'sdoj@hello.world', 0, 0, 0, 0, '', '1970-01-01 00:00:00', 1, 0, 'sdojpassword', '1970-01-01 00:00:00', 'admin', '', 'I\'m an evil administrator.', 31);
+('root', 'sdoj@hello.world', 0, 0, 0, 0, '', '1970-01-01 00:00:00', 1, 0, 'sdojpass', '1970-01-01 00:00:00', 'admin', '', 'I\'m an evil administrator.', 31);
 
 -- --------------------------------------------------------
 

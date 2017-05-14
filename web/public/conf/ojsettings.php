@@ -56,7 +56,7 @@ static $nightstart = NIGHT_STARTS;
 
 //2.4 News Settings
 //"news_num" defines the maxium number of news shown in index.php
-static $news_num=7; 
+static $news_num=5; 
 
 //2.5 Contact email
 //Contact email that is shown in login.php.
