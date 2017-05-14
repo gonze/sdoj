@@ -11,10 +11,9 @@ function check_id(&$str,&$t){
 
   if(preg_match('/\D/',$str))
         return;
-
+//require __DIR__ . '../src/database.php';//?why
 require_once __DIR__ . '/../config/config.php';
-
-if(!$con){//这里本来要require database.php，但出现啦bug，以后解决
+if(!$con){//这里本来要require database.php，但出现啦bug，以后解决 
 	$con= mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 
 	if(!$con){
