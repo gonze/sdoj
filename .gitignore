@@ -67,3 +67,6 @@ jspm_packages
 /web/config/config.php
 
 #/web/vendor/*
+
+#judge
+judge

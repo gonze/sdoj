@@ -354,6 +354,7 @@ CREATE TABLE `solution` (
   `result` smallint(6) NOT NULL DEFAULT '0',
   `score` int(11) NOT NULL DEFAULT '0',
   `language` tinyint(4) NOT NULL DEFAULT '0',
+  `valid` int(4) NOT NULL DEFAULT '0',
   `contest_id` int(11) DEFAULT NULL,
   `code_length` int(11) NOT NULL DEFAULT '0',
   `public_code` tinyint(1) NOT NULL DEFAULT '0',
