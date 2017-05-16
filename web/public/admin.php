@@ -177,6 +177,8 @@ $Title=$inTitle .' - '. $oj_name;
                 </div>
             </div>
         </div>
+
+
     
         <div class="modal fade" id="RejudgeModal">
             <div class="modal-dialog">
@@ -277,6 +279,8 @@ $Title=$inTitle .' - '. $oj_name;
                 </div>
             </div>
       
+
+
 
             <div class="modal fade" id="PrivModal">
                 <div class="modal-dialog">
@@ -636,12 +640,17 @@ $Title=$inTitle .' - '. $oj_name;
                                 $('#PrivModal').modal('show');
                             break;
                             case '#del':
-                                $.ajax({
+				if(!window.confirm("Are you sure delete the user: "+ uid ))
+					return false;
+				if(!window.confirm("Are you sure delete the user: "+ uid  ))
+					return false;
+				$.ajax({
                                     type:"POST",
                                     url:"api/ajax_admin.php",
-                                    data:{op:'toggle_usr',user_id:uid},
+                                    data:{op:'del_usr',user_id:uid},
                                     success:getusrlist(upid,kw)
                                 });
+
                             break;
                             case '#linkU':
                                 $('#user_status').html('<i class="fa fa-fw fa-refresh fa-spin"></i> <?php echo _('Loading...')?>').load("api/ajax_user.php?user_id="+uid).scrollTop(0);

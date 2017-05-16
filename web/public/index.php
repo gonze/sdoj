@@ -5,7 +5,7 @@ require __DIR__.'/func/privilege.php';
 require __DIR__.'/func/checklogin.php';
 if(!isset($con))
     require __DIR__.'/../src/database.php';
-echo "debugincdex";
+
 
 $res=mysqli_query($con,"select content from news where news_id=0 limit 1");
 $index_text=($row=mysqli_fetch_row($res)) ? $row[0] : '';

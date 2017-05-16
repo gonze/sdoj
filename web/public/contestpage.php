@@ -62,7 +62,7 @@ else{
                 $judge_way=_('Training');
                 break;
             case 1:
-                $judge_way=_('CWOJ');
+                $judge_way=_('SDOJ');
                 break;
             case 2:
                 $judge_way=_('ACM-like');

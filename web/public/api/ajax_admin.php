@@ -379,7 +379,7 @@ else if ($op == "list_usr") {
                     echo '<td>'.list_priv($row[6]).'(<span>'.$row[6].'</span>)</td>';
                     echo '<td>',$row[1], '</td>';
                     echo '<td>',$row[2], '/',$row[3], '</td>';
-                    echo '<td><div class="btn-group"><a href="#email" class="btn btn-default">',_('Email'), '</a><a href="#priv" class="btn btn-default">',_('Privilege'), '</a>';
+                    echo '<td><div class="btn-group"><a href="#del" class="btn btn-default">',_('delete'), '</a><a href="#email" class="btn btn-default">',_('Email'), '</a><a href="#priv" class="btn btn-default">',_('Privilege'), '</a>';
                     echo '</div></td></tr>';
                 }
             ?>
@@ -418,8 +418,7 @@ else if ($op == 'del_usr') {
 
     if (!strcasecmp($uid,$_SESSION['user']))
         die('');
-
-    mysqli_query($con,"delete from users where user_id='$uid' and (accesstime IS NULL)");
+	mysqli_query($con,"delete from users where user_id= '$uid'and (accesstime IS NULL)"); 
 }
 
 /*

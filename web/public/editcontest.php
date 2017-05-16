@@ -33,7 +33,7 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
                     $way='train';
                     break;
                 case 1:
-                    $way='codgic';
+                    $way='sdoj';
                     break;
                 case 2:
                     $way='acm-like';

@@ -11,8 +11,8 @@
     <link rel="manifest" href="/assets/res/manifest.json?v=1">
     <link rel="mask-icon" href="/assets/res/safari-pinned-tab.svg?v=1" color="#5bbad5">
     <link rel="shortcut icon" href="/assets/res/favicon.ico?v=1">
-    <meta name="apple-mobile-web-app-title" content="CWOJ">
-    <meta name="application-name" content="CWOJ">
+    <meta name="apple-mobile-web-app-title" content="SDOJ">
+    <meta name="application-name" content="SDOJ">
     <meta name="msapplication-config" content="/assets/res/browserconfig.xml?v=1">
     <title><?php echo $Title?></title>
     <!--<script src="/assets/js/jquery.min.js?v=310"></script>

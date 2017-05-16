@@ -969,7 +969,7 @@ msgid "Training"
 msgstr "训练模式"
 
 #: contestpage.php:65
-msgid "CWOJ"
+msgid "SDOJ"
 msgstr "SDOJ赛制"
 
 #: contestpage.php:68 editcontest.php:145
