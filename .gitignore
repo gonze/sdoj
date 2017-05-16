@@ -70,3 +70,5 @@ jspm_packages
 
 #judge
 judge
+#images
+/web/public/images/*
