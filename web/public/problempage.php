@@ -271,7 +271,7 @@ $Title=$inTitle .' - '. $oj_name;
                                 <h5 class="panel-title"><?php echo _('Sample Input')?>
                                 <a herf="#" class="pull-right" id="copy_in" style="cursor:pointer" data-toggle="tooltip" data-trigger="manual" data-clipboard-action="copy" data-clipboard-target="#sample_input"><?php echo _('[Copy]')?></a></h5>
                             </div>
-                            <div class="panel-body problem-sample preserve-whitespace" id="sample_input">
+                            <div class="panel-body" id="sample_input">
                                 <?php echo HTMLPurifier::instance()->purify($row_prob[4]); ?>
                             </div>
                         </div>
@@ -280,8 +280,9 @@ $Title=$inTitle .' - '. $oj_name;
                                 <h5 class="panel-title"><?php echo _('Sample Output')?>
                                 <a herf="#" class="pull-right" id="copy_out" style="cursor:pointer" data-toggle="tooltip" data-trigger="manual" data-clipboard-action="copy" data-clipboard-target="#sample_output"><?php echo _('[Copy]')?></a></h5>
                             </div>
-                            <div class="panel-body problem-sample preserve-whitespace" id="sample_output">
-                                <?php echo HTMLPurifier::instance()->purify($row_prob[5]);?>
+                            <div class="panel-body" id="sample_output">
+				                              
+				<?php echo  HTMLPurifier::instance()->purify($row_prob[5]);?>
                             </div>
                         </div>
                         <?php if(strlen(trim($row_prob[6]))){ ?>
