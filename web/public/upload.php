@@ -19,14 +19,16 @@ else{
             $tmp = explode('.', $filename);
             $file_extension = end($tmp);
 
-            if(file_exists(OJDIR."/images/$filename"))
+            if(file_exists(OJDIR."images/$filename"))
                 echo _('File '),"'$filename'",_(' exists already, try another name...');
-            if(!is_dir(OJDIR."/images"))
-                if(!mkdir(OJDIR."/images",0770))
+            
+	   if(!is_dir(OJDIR."images"))
+                if(!mkdir(OJDIR."images",0770))
                     echo _('Can\'t access upload directory...');
-                    
-            if(move_uploaded_file($_FILES["file"]["tmp_name"],OJDIR."/images/$filename")){
-                $imgtag="img src=\"/images/$filename\"";
+                 	
+	
+            if(move_uploaded_file($_FILES["file"]["tmp_name"],OJDIR."images/$filename")){
+                $imgtag="img src=\"./images/$filename\"";
             }else
                 echo _('Upload Failed!');
         }catch(Exception $e){
@@ -116,12 +118,20 @@ $Title=$inTitle .' - '. $oj_name;
             }
             var clipboard = new Clipboard('#btn_copy',{
                 text: function(){
-                    return '<<?php if(isset($imgtag)) echo $imgtag?>>';
+                    return '< <?php if(isset($imgtag)) echo $imgtag?> >';
                 }
-            });
+
+//bug20170517   can't copy
             clipboard.on('error',function(e){
-                console.log(e);
+                console.log(e);       
+	   });
+
+	
             });
+		
+             
+
+
         </script>
     </body>
 </html>

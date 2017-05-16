@@ -240,11 +240,66 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
             <?php }
             require __DIR__.'/inc/footer.php';?>
         </div>
+
+	<div class="html-tools">
+      <div class="well well-small margin-0" id="tools">
+        <table class="table table-bordered table-condensed table-striped" style="width:100%">
+          <caption><p>HTML代码工具</p></caption>
+          <thead>
+            <tr>
+              <th>功能</th>
+              <th>代码</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_less">小于(&lt;)</button></td>
+              <td>&amp;lt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_greater">大于(&gt;)</button></td>
+              <td>&amp;gt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_img">图片</button></td>
+              <td>&lt;img src=&quot;...&quot;&gt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_sup">上标</button></td>
+              <td>&lt;sup&gt;...&lt;/sup&gt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_sub">下标</button></td>
+              <td>&lt;sub&gt;...&lt;/sub&gt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_samp">单间隔</button></td>
+              <td>&lt;samp&gt;...&lt;/samp&gt;</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_inline">公式</button></td>
+              <td>[inline]...[/inline]</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-mini" id="tool_tex">居中公式</button></td>
+              <td>[tex]...[/tex]</td>
+            </tr>
+          </tbody>
+        </table>
+		  <div style="text-align:center;margin-top:10px">
+            <button class="btn btn-info" id="btn_upload">上传图片...</button>
+		    <button class="btn btn-primary" id="btn_hide">隐藏工具栏 >></button>
+      </div>
+      </div>
+    </div>
+
         <script src="/assets/js/common.js?v=<?php echo $web_ver?>"></script>
         <script src="/assets/js/simplemde.min.js"></script>
         <script src="/assets_webpack/highlight.js"></script>
         <script type="text/javascript"> 
             $(document).ready(function(){
+		var loffset=window.screenLeft+300;
+       		 var toffset=window.screenTop+300;
                 $("[data-toggle='tooltip']").tooltip();
                 $('.simplemde').each(function() {
                     if($(this).hasClass('no-toolbar'))
@@ -304,6 +359,7 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
                     show_help($('#input_cmp').val());
                 })();
                 $('#input_cmp').change(function(E){show_help($(E.target).val());});
+
                 $('#btn_hide').click(function(){
                     $('#tools').fadeOut();
                     $('#showtools').fadeIn();
@@ -312,6 +368,16 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
                     $('#tools').fadeIn();
                     $('#showtools').fadeOut();
                 });
+
+
+
+		
+      
+
+
+
+
+
                 $('#edit_form textarea').focus(function(e){cur=e.target;});
                 $('#edit_form').submit(function(){
                     var b=false;
@@ -353,7 +419,70 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
                         });
                     }
                 return false;
-            });
+           	});
+
+
+	 $('#btn_upload').click(function(){
+	
+          window.open("upload.php",'upload_win2','left='+loffset+',top='+toffset+',width=500,height=600,toolbar=no,resizable=no,menubar=no,location=no,status=no');
+        });
+
+        $('#edit_form textarea').focus(function(e){cur=e.target;});
+        $('#edit_form input').blur(function(e){
+          e.target.value=$.trim(e.target.value);
+          var o=$(e.target);
+          if(!e.target.value||(/\D/.test(e.target.value)))
+            o.addClass('error');
+          else
+            o.removeClass('error');
+        });
+        $('#edit_form').submit(function(){
+          var str=$('#input_memory').val();
+          if(!str||(/\D/.test(str))){
+            window.location.hash='#edit_form';
+            return false;
+          }
+          str=$('#input_time').val();
+          if(!str||(/\D/.test(str))){
+            window.location.hash='#edit_form';
+            return false;
+          }
+          str=$('#input_score').val();
+          if(!str||(/\D/.test(str))){
+            window.location.hash='#edit_form';
+            return false;
+          }
+          return true;
+        });
+
+        $('#tools').click(function(e){
+          if(!($(e.target).is('button')))return false;
+          if(typeof(cur)=='undefined')return false;
+          var op=e.target.id;
+          var slt=GetSelection(cur);
+          if(op=="tool_greater")
+            InsertString(cur,'&gt;');
+          else if(op=="tool_less")
+            InsertString(cur,'&lt;');
+          else if(op=="tool_img"){
+            var url=prompt("请输入图片链接:","");
+            if(url){
+              InsertString(cur,slt+'<img src="'+url+'">');
+            }
+          }else if(op=="tool_inline"||op=="tool_tex"){
+            op=op.substr(5);
+            InsertString(cur,'['+op+']'+slt+'[/'+op+']');
+          }else if(op=="btn_upload"||op=="btn_hide"){
+            return false;
+          }else{
+            op=op.substr(5);
+            InsertString(cur,'<'+op+'>'+slt+'</'+op+'>');
+          }
+ 	 return false;
+        });
+
+
+
         });
     </script>
   </body>
