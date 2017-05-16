@@ -17,23 +17,32 @@ if(isset($_GET['level'])){
         header("Location: problemset.php");
         exit();
     }
-    
-    $addt_cond=" (has_tex&".PROB_LEVEL_MASK.")=".($level<<PROB_LEVEL_SHIFT);
+    //echo $level;
+    $addt_cond=" (has_tex&".PROB_LEVEL_MASK.")=".($level<<PROB_LEVEL_SHIFT);//has_tex记录了开源和难度信息，前3为记录开源信息，4-6位记录难度信息
     if(!check_priv(PRIV_PROBLEM))
-        $addt_cond.="and defunct=0 ";
+       $addt_cond.=" and defunct=0 ";//bug修复用户不能查询难度问题，少了一个空格
     if(!check_priv(PRIV_INSIDER))
-        $addt_cond.="and (has_tex&".PROB_IS_HIDE.")=0 ";
+        $addt_cond.=" and (has_tex&".PROB_IS_HIDE.")=0 ";
         
     $range="limit ".(($page_id-1)*100).",100";
+	
+
     if(isset($_SESSION['user'])){
         $user_id=$_SESSION['user'];
         $result=mysqli_query($con,"SELECT problem_id,title,accepted,submit,source,defunct,res,saved.pid from problem 
         LEFT JOIN (select problem_id as pid,MIN(result) as res from solution where user_id='$user_id' group by problem_id) as solved on(solved.pid=problem_id) 
         left join (select problem_id as pid from saved_problem where user_id='$user_id') as saved on(saved.pid=problem_id) 
         where $addt_cond order by problem_id $range");
+
     }else{
-        $result=mysqli_query($con,"select problem_id,title,accepted,submit,source,defunct from problem where $addt_cond order by problem_id $range");
+
+	$temp = " (has_tex&".PROB_LEVEL_MASK.")=".($level<<PROB_LEVEL_SHIFT);
+          $result=mysqli_query($con,"select problem_id,title,accepted,submit,source,defunct from problem where $addt_cond order by problem_id $range");
+	//$result=mysqli_query($con,"select problem_id,title,accepted,submit,source,defunct from problem where $temp order by problem_id $range");
+	//echo mysqli_num_rows($result);
+
     }
+   
     if(mysqli_num_rows($result)==0) 
         $info=_('There\'s no problem of this level');
 }else{

@@ -11,7 +11,7 @@ define('CONTACT_EMAIL', 'info@sdsy.net');
 * Please ensure that PHP has the permission to R/W in the directory you've defined.
 */
 define('POSTMESSAGE_LOCK', '/tmp/sdoj_message.lock');
-define('DISPLAY_LANGUAGE', 'zh_CH');
+define('DISPLAY_LANGUAGE', 'zh_CN');
 //define('DISPLAY_LANGUAGE', 'en_US');
 // If this option is set to `true`, all users will have to login to access the whole website.
 define('ACCESS_REQUIRES_LOGIN', false);
