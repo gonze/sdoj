@@ -3,6 +3,7 @@ require __DIR__.'/inc/init.php';
 require __DIR__.'/func/privilege.php';
 require __DIR__.'/func/checklogin.php';
 
+
 if(!check_priv(PRIV_PROBLEM) && !check_priv(PRIV_SYSTEM))
     include __DIR__.'/inc/403.php';
 else{
@@ -11,7 +12,7 @@ else{
         if(!function_exists('my_rsa'))
         require __DIR__.'/func/checkpwd.php';
         if(password_right($_SESSION['user'], $_POST['paswd'])){
-            $_SESSION['admin_tfa']=1;
+	    $_SESSION['admin_tfa']=1;
             if(isset($_SESSION['admin_retpage'])){
                 $ret=$_SESSION['admin_retpage'];
             }else
@@ -27,7 +28,7 @@ $Title=$inTitle .' - '. $oj_name;
 ?>
 <!DOCTYPE html>
 <html>
-    <?php require __DIR__.'/inc/head.php'; ?>
+    <?php require __DIR__.'/inc/head.php';  ?>
     <body>
         <?php require __DIR__.'/inc/navbar.php'; ?>  
           

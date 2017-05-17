@@ -515,5 +515,19 @@ else if ($op == 'sendemail_all') {
         $re='success';
         
     echo $re;
-}else
+}
+/*
+*
+*op:de_message
+* delete the message
+*/
+else if($op == 'del_message'){
+ 	 isset($_POST['del_message']) ? $msg_id=$_POST['del_message'] : die('error'); 
+	
+	if(mysqli_query($con,"delete from message where message_id = ".$msg_id))
+   		echo "success del the messge !";
+
+}
+
+else
     echo _('Invalid Argument...');

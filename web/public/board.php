@@ -1,6 +1,7 @@
 <?php
 require __DIR__.'/inc/init.php';
 require_once __DIR__.'/../src/mathjax.php';
+require __DIR__.'/func/privilege.php';
 require __DIR__.'/func/checklogin.php';
 
 if(isset($_GET['start_id']))
@@ -128,9 +129,17 @@ $Title=$inTitle .' - '. $oj_name;
                                     echo '&nbsp;<span class="label label-warning" style="font-size:12px">',_('Latest'),'</span>';
                                 if($deep==0 && $row[6])
                                     echo '&nbsp;&nbsp;<a class="prob_link" href="problempage.php?problem_id=',$row[6],'">',_('Problem '),'#',$row[6],'</a>';
+
                                 echo '<div class="btn-group"><button onclick="open_replypanel(',$row[3],')" class="btn btn-default btn-sm"><i class="fa fa-fw fa-reply"></i> ',_('Reply'),'</button>';
+
                                 if(isset($_SESSION['user'])&&$row[2]==$_SESSION['user']) 
                                     echo ' <button onclick="open_editpanel(',$row[3],')" class="btn btn-default btn-sm"><i class="fa fa-fw fa-pencil"></i> ',_('Edit'),'</button>';
+
+				 if(check_priv(PRIV_SYSTEM)) 
+                                    echo ' <button onclick="open_delpanel(',$row[3],')" class="btn btn-default btn-sm"><i class="fa fa-fw fa fa-remove"></i> ',_('delete'),'</button>';
+
+
+
                                 echo '</div></div>';
                                 if($row[7])
                                     echo '<p class="msg-content msg-detailed">';
@@ -207,7 +216,28 @@ $Title=$inTitle .' - '. $oj_name;
                 this.href=Href;
             });
         }
-        function open_replypanel(msg_id){
+
+        function open_delpanel(msg_id){
+            <?php  if(check_priv(PRIV_SYSTEM)) {?>
+               if(!window.confirm('are you sure delete it?'))
+			return false;
+		 $.ajax({			
+                    type:"POST",
+                    url:"api/ajax_admin.php",
+                    data:{op:"del_message",del_message:msg_id
+			  },
+                    success:function(info){
+                        alert(info);
+                        location.reload();
+                    }
+                 });
+		
+   		
+            <?php }?>
+          //  return false;
+        }
+
+	 function open_replypanel(msg_id){
             <?php if(isset($_SESSION['user'])){?>
                 var title = ((msg_id=='0')?'<i class="fa fa-fw fa-commenting"></i> <?php echo _('New Post')?>':'<i class="fa fa-fw fa-reply"></i> <?php echo _('New Reply')?>: #'+msg_id);
                 $('#msg_op').val('msg_create');
@@ -224,11 +254,16 @@ $Title=$inTitle .' - '. $oj_name;
             <?php }else{ ?>
                 $('#alert_error').removeClass('alert-info');
                 $('#alert_error').addClass('alert-danger');
-                $('#alert_error').html('<i class="fa fa-fw fa-remove"></i> <?php echo _('Please login first...')?>').fadeIn();
-                setTimeout(function(){$('#alert_error').fadeOut();},2000);
+                $('#alert_error').html('<i class="fa fa-fw fa-remove"></i> <?php echo _('Please login first...')?>').fadeIn();             
             <?php }?>
             return false;
         }
+
+		
+
+
+
+
         function open_editpanel(msg_id){
             <?php if(isset($_SESSION['user'])){?>
                 var title = '<i class="fa fa-fw fa-pencil"></i> <?php echo _('Edit Post')?>';
