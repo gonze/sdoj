@@ -118,16 +118,16 @@ $Title=$inTitle .' - '. $oj_name;
             }
             var clipboard = new Clipboard('#btn_copy',{
                 text: function(){
-                    return '< <?php if(isset($imgtag)) echo $imgtag?> >';
+
+                    return '<<?php if(isset($imgtag)) echo $imgtag?>>';
                 }
 
-//bug20170517   can't copy
-            clipboard.on('error',function(e){
-                console.log(e);       
-	   });
+           	 clipboard.on('error',function(e){
+             	   console.log(e);       
+	  	 });
 
 	
-            });
+           	 });
 		
              
 
