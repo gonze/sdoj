@@ -49,17 +49,17 @@ function get_pre_link(){
 
 $rank=($page_id-1)*20;
 if($online == 0) 
-    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,MAX(experience_titles.experience) AS m 
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege from users order by score desc,experience desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience GROUP BY user_id)t1 
+    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience,motto
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,MAX(experience_titles.experience) AS m 
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by experience desc,score desc,solved desc,submit desc limit $rank,20");
+    order by experience desc,score desc,solved desc,submit desc limit $rank,40");
 else
-    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,MAX(experience_titles.experience) AS m 
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege from users order by score desc,experience desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience and privilege & ".PRIV_USER." = 1 and (NOW()-accesstime)<=300 GROUP BY user_id)t1 
+    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience,motto
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,MAX(experience_titles.experience) AS m 
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience and privilege & ".PRIV_USER." = 1 and (NOW()-accesstime)<=300 GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by experience desc,score desc,solved desc,submit desc limit $rank,20");
+    order by experience desc,score desc,solved desc,submit desc limit $rank,40");
 
 $inTitle=_('Rank');
 $Title=$inTitle .' - '. $oj_name;
@@ -106,14 +106,15 @@ $Title=$inTitle .' - '. $oj_name;
                                 <thead>
                                     <tr>
                                         <th style="width:5%">No.</th>
-                                        <th style="width:15%"><?php echo _('User')?></th>
-                                        <th style="width:20%"><?php echo _('Nickname')?></th>
-                                        <th style="width:8%"><?php echo _('Status')?></th>
+                                        <th style="width:12%"><?php echo _('User')?></th>
+                                        <th style="width:10%"><?php echo _('Nickname')?></th>
+				        <th style="width:20%"><?php echo _('Motto')?></th>
+                                        <th style="width:6%"><?php echo _('Status')?></th>
                                         <th style="width:8%"><?php echo _('Level')?></th>
                                         <th style="width:8%"><?php echo _('Score')?></th>
-					<th style="width:12%"><?php echo _('Experience')?></th>
+					<th style="width:10%"><?php echo _('Experience')?></th>
                                         <th style="width:8%"><?php echo _('AC')?></th>
-                                        <th style="width:8%"><?php echo _('Submit')?></th>
+                                        <th style="width:6%"><?php echo _('Submit')?></th>
                                         <th style="width:8%"><?php echo _('AC Ratio')?></th>
                                     </tr>
                                 </thead>
@@ -123,6 +124,7 @@ $Title=$inTitle .' - '. $oj_name;
                                             echo '<tr><td>',(++$rank),'</td>';
                                             echo '<td><a href="#linkU">',$row[0],'</a></td>';
                                             echo '<td>',htmlspecialchars($row[1]),'</td>';
+					    echo '<td>',htmlspecialchars($row[9]),'</td>';
                                             if($row[6] & PRIV_USER){
                                                 if(time()-strtotime($row[5])<=300)
                                                     echo '<td><label class="label label-ac">',_('Online'),'</label></td>';
