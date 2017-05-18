@@ -53,13 +53,13 @@ if($online == 0)
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege from users order by score desc,experience desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by score desc,experience desc,solved desc,submit desc limit $rank,20");
+    order by experience desc,score desc,solved desc,submit desc limit $rank,20");
 else
     $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege from users order by score desc,experience desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience and privilege & ".PRIV_USER." = 1 and (NOW()-accesstime)<=300 GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by score desc,experience desc,solved desc,submit desc limit $rank,20");
+    order by experience desc,score desc,solved desc,submit desc limit $rank,20");
 
 $inTitle=_('Rank');
 $Title=$inTitle .' - '. $oj_name;
@@ -111,7 +111,7 @@ $Title=$inTitle .' - '. $oj_name;
                                         <th style="width:8%"><?php echo _('Status')?></th>
                                         <th style="width:8%"><?php echo _('Level')?></th>
                                         <th style="width:8%"><?php echo _('Score')?></th>
-					<th style="width:12%"><?php echo _('experience')?></th>
+					<th style="width:12%"><?php echo _('Experience')?></th>
                                         <th style="width:8%"><?php echo _('AC')?></th>
                                         <th style="width:8%"><?php echo _('Submit')?></th>
                                         <th style="width:8%"><?php echo _('AC Ratio')?></th>

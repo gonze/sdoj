@@ -414,11 +414,11 @@ else if ($op == 'update_priv') {
 */
 
 else if ($op == 'del_usr') {
-    isset($_POST['user_id']) ? $uid=mysqli_real_escape_string($con,trim($_POST['user_id'])) : die('');
+    isset($_POST['user_id']) ? $uid=mysqli_real_escape_string($con,trim($_POST['user_id'])) : die('RERRO');
 
     if (!strcasecmp($uid,$_SESSION['user']))
         die('');
-	mysqli_query($con,"delete from users where user_id= '$uid'and (accesstime IS NULL)"); 
+mysqli_query($con,"delete from users where user_id= '$uid'"); 
 }
 
 /*

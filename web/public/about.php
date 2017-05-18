@@ -19,7 +19,7 @@ $Title=$inTitle .' - '. $oj_name;
                     <div>
                         <p>
                             <?php
-                                echo _('SDOJ.');
+                                echo _('SDOJ. 采用实名制注册，昵称请全部改成实名，否则将面临封号');
                             ?>
                         </p>
                     </div>

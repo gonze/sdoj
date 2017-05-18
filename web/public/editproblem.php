@@ -424,7 +424,7 @@ else if(!isset($_SESSION['admin_tfa']) || !$_SESSION['admin_tfa']){
 
 	 $('#btn_upload').click(function(){
 	
-          window.open("upload.php",'upload_win2','left='+loffset+',top='+toffset+',width=500,height=600,toolbar=no,resizable=no,menubar=no,location=no,status=no');
+          window.open("upload.php",'upload_win2','left='+loffset+',top='+toffset+',width=600,height=400,toolbar=no,resizable=no,menubar=no,location=no,status=no');
         });
 
         $('#edit_form textarea').focus(function(e){cur=e.target;});

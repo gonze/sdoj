@@ -272,7 +272,7 @@ $Title=$inTitle .' - '. $oj_name;
                                 <a herf="#" class="pull-right" id="copy_in" style="cursor:pointer" data-toggle="tooltip" data-trigger="manual" data-clipboard-action="copy" data-clipboard-target="#sample_input"><?php echo _('[Copy]')?></a></h5>
                             </div>
                             <div class="panel-body" id="sample_input">
-                                <?php echo HTMLPurifier::instance()->purify($row_prob[4]); ?>
+                                <?php echo mb_ereg_replace('\r?\n','<br>',$row_prob[4]); ?>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -282,7 +282,7 @@ $Title=$inTitle .' - '. $oj_name;
                             </div>
                             <div class="panel-body" id="sample_output">
 				                              
-				<?php echo  HTMLPurifier::instance()->purify($row_prob[5]);?>
+				<?php echo mb_ereg_replace('\r?\n','<br>', $row_prob[5]);?>
                             </div>
                         </div>
                         <?php if(strlen(trim($row_prob[6]))){ ?>
@@ -290,7 +290,7 @@ $Title=$inTitle .' - '. $oj_name;
                                 <div class="panel-heading">
                                     <h5 class="panel-title"><?php echo _('Hints')?></h5>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body ">
                                     <?php echo HTMLPurifier::instance()->purify(parse_markdown($row_prob[6]));?>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@ $Title=$inTitle .' - '. $oj_name;
                             <div class="panel-heading">
                                 <h5 class="panel-title"><?php echo _('Tags')?></h5>
                             </div>
-                            <div class="panel-body preserve-whitespace">
+                            <div class="panel-body">
                                 <?php echo HTMLPurifier::instance()->purify($row_prob[7]);?>
                             </div>
                         </div>

@@ -56,8 +56,7 @@ msgid "About"
 msgstr "关于"
 
 #: about.php:22
-msgid ""
-"SDOJ."
+msgid """SDOJ."
 msgstr ""
 "SDOJ是基于bsoj，cwoj改变而成，为校园内部使用"
 "起始于2017年5月10日，我们一直致力于为学校提供在线评测解决方案。"
@@ -188,7 +187,7 @@ msgid "News"
 msgstr "新闻"
 
 #: admin.php:35 admin.php:101 api/ajax_admin.php:227 api/ajax_admin.php:262
-#: api/ajax_admin.php:265
+#: api/ajax_admin.php:265 ranklist.php:114
 msgid "Experience"
 msgstr "经验"
 
@@ -1926,6 +1925,10 @@ msgstr "用户\"'+user1+'\"不存在..."
 #: ranklist.php:259
 msgid "User \"'+user2+'\" does not exist..."
 msgstr "用户\"'+user2+'\"不存在..."
+
+#: ranklist.php:110
+msgid "experience"
+msgstr "内力"
 
 #: record.php:162
 msgid "OSC"
