@@ -49,17 +49,17 @@ function get_pre_link(){
 
 $rank=($page_id-1)*20;
 if($online == 0) 
-    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience,motto
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,MAX(experience_titles.experience) AS m 
+    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,t1.exp,motto
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,t.experience as exp,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by experience desc,score desc,solved desc,submit desc limit $rank,40");
+    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,40");
 else
-    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,experience,motto
-    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,MAX(experience_titles.experience) AS m 
+    $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,t1.exp,motto
+    FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,t.experience as exp,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience and privilege & ".PRIV_USER." = 1 and (NOW()-accesstime)<=300 GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by experience desc,score desc,solved desc,submit desc limit $rank,40");
+    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,40");
 
 $inTitle=_('Rank');
 $Title=$inTitle .' - '. $oj_name;
@@ -111,8 +111,8 @@ $Title=$inTitle .' - '. $oj_name;
 				        <th style="width:20%"><?php echo _('Motto')?></th>
                                         <th style="width:6%"><?php echo _('Status')?></th>
                                         <th style="width:8%"><?php echo _('Level')?></th>
-                                        <th style="width:8%"><?php echo _('Score')?></th>
-					<th style="width:10%"><?php echo _('Experience')?></th>
+                                        <th style="width:10%"><?php echo _('Experience')?></th>
+					<th style="width:8%"><?php echo _('Score')?></th>
                                         <th style="width:8%"><?php echo _('AC')?></th>
                                         <th style="width:6%"><?php echo _('Submit')?></th>
                                         <th style="width:8%"><?php echo _('AC Ratio')?></th>
@@ -133,8 +133,8 @@ $Title=$inTitle .' - '. $oj_name;
                                             }else
                                                 echo '<td><label class="label label-ce">',_('Disabled'),'</label></td>';
                                             echo '<td>',htmlspecialchars($row[7]),'</td>';
-                                            echo '<td>',$row[4],'</td>';
-					    echo '<td>',$row[8],'</td>';
+                                            echo '<td>',$row[8],'</td>';
+					    echo '<td>',$row[4],'</td>';
                                             echo '<td><a href="record.php?user_id=',$row[0],'&amp;result=0">',$row[2],'</a></td>';
                                             echo '<td><a href="record.php?user_id=',$row[0],'">',$row[3],'</a></td>';
 
