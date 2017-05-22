@@ -19,9 +19,54 @@ $Title=$inTitle .' - '. $oj_name;
                     <div>
                         <p>
                             <?php
-                                echo _('SDOJ. 采用实名制注册，昵称请全部改成实名，否则将面临封号');
+                                echo _('SDOJ. 采用实名制注册，昵称请全部改成实名，否则将面临封号！');
                             ?>
                         </p>
+                            <br />
+                             排名按经验值，分数，ac量的顺序排名。
+                            通过做不同难度的题获取不同的经验值。
+                            经验值分布：
+                             <br />
+                             <table class="reference notranslate">
+<tbody><tr>
+<th align="left">难度</th>
+<th align="left">经验</th>
+</tr>
+<tr>
+<td>难度 0 ：</td>
+<td> 5</td>
+</tr>
+<tr>
+<td>难度 1：</td>
+<td>10</td>
+</tr>
+<tr>
+<td>难度 2：</td>
+<td>25</td>
+</tr>
+<tr>
+<td>难度 3：</td>
+<td>40</td>
+</tr>
+<tr>
+<td>难度 4：</td>
+<td>60  </td>
+</tr>
+<tr>
+<td>难度 5：</td>
+<td>100</td>
+</tr>
+<tr>
+<td>难度 6：</td>
+<td>150</td>
+</tr>
+<tr>
+<td>难度 7：</td>
+<td>200</td>
+</tr>
+<tr>
+</tbody></table>	
+                                          
                     </div>
 
 
