@@ -42,19 +42,19 @@ $Title=$inTitle .' - '. $oj_name;
 </tr>
 <tr>
 <td>难度 2：</td>
-<td>25</td>
+<td>30</td>
 </tr>
 <tr>
 <td>难度 3：</td>
-<td>40</td>
+<td>50</td>
 </tr>
 <tr>
 <td>难度 4：</td>
-<td>60  </td>
+<td>80  </td>
 </tr>
 <tr>
 <td>难度 5：</td>
-<td>100</td>
+<td>120</td>
 </tr>
 <tr>
 <td>难度 6：</td>
@@ -62,7 +62,7 @@ $Title=$inTitle .' - '. $oj_name;
 </tr>
 <tr>
 <td>难度 7：</td>
-<td>200</td>
+<td>180</td>
 </tr>
 <tr>
 </tbody></table>	
