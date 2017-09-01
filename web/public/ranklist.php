@@ -19,7 +19,7 @@ if(isset($_GET['online'])){
 if(!isset($con)) 
     require __DIR__.'/../src/database.php';
 $row=mysqli_fetch_row(mysqli_query($con,'select count(*) from users'));
-$maxpage=intval($row[0]/20)+1;
+$maxpage=intval($row[0]/50)+1;
 if($page_id<1){
     header("Location: ranklist.php");
     exit();
@@ -53,13 +53,13 @@ if($online == 0)
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,t.experience as exp,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,40");
+    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,50");
 else
     $result = mysqli_query($con,"SELECT user_id,nick,solved,submit,score,accesstime,privilege,experience_titles.title,t1.exp,motto
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,privilege,motto,t.experience as exp,MAX(experience_titles.experience) AS m 
     FROM (SELECT user_id,nick,solved,submit,score,accesstime,experience,privilege,motto from users order by  experience desc,score desc,solved desc,submit desc)t,experience_titles where t.experience>=experience_titles.experience and privilege & ".PRIV_USER." = 1 and (NOW()-accesstime)<=300 GROUP BY user_id)t1 
     LEFT JOIN experience_titles ON t1.m=experience_titles.experience 
-    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,40");
+    order by t1.exp desc,score desc,solved desc,submit desc limit $rank,50");
 
 $inTitle=_('Rank');
 $Title=$inTitle .' - '. $oj_name;
@@ -106,24 +106,41 @@ $Title=$inTitle .' - '. $oj_name;
                                 <thead>
                                     <tr>
                                         <th style="width:5%">No.</th>
-                                        <th style="width:12%"><?php echo _('User')?></th>
-                                        <th style="width:10%"><?php echo _('Nickname')?></th>
-				        <th style="width:20%"><?php echo _('Motto')?></th>
+                                        <th style="width:10%"><?php echo _('User')?></th>
+                                        <th style="width:11%"><?php echo _('Nickname')?></th>
+				        <th style="width:25%"><?php echo _('Motto')?></th>
                                         <th style="width:6%"><?php echo _('Status')?></th>
-                                        <th style="width:8%"><?php echo _('Level')?></th>
+                                        <th style="width:12%"><?php echo _('Level')?></th>
                                         <th style="width:10%"><?php echo _('Experience')?></th>
-					<th style="width:8%"><?php echo _('Score')?></th>
+					
                                         <th style="width:8%"><?php echo _('AC')?></th>
-                                        <th style="width:6%"><?php echo _('Submit')?></th>
-                                        <th style="width:8%"><?php echo _('AC Ratio')?></th>
+                                        <th style="width:7%"><?php echo _('Submit')?></th>
+                                        <th style="width:6%"><?php echo _('AC Ratio')?></th>
                                     </tr>
                                 </thead>
                                 <tbody id="userlist">
                                     <?php
                                         while($row=mysqli_fetch_row($result)){
+					    //名字的颜色，要根据实际经验设置来修改源码
+				      
+						 if($row[8] >= 120000)$col="#B22222";
+					   	 else
+							if($row[8] >= 60000)$col="#FF0000";
+					   		 else
+								if($row[8] >= 35000)$col="#EE00EE";
+					   	 		else
+									if($row[8] >= 500)$col="#CD661D";
+					   				 else
+										if($row[8] >= 200)$col="#1C86EE";
+					   					 else
+											if($row[8] >= 100)$col="#00EE76";
+					   						 else
+												$col="#7AC5CD";
+											
+
                                             echo '<tr><td>',(++$rank),'</td>';
                                             echo '<td><a href="#linkU">',$row[0],'</a></td>';
-                                            echo '<td>',htmlspecialchars($row[1]),'</td>';
+                                            echo '<td><font color="',$col,'">',htmlspecialchars($row[1]),'</font></td>';//,$col,'>',,'</p></td>';
 					    echo '<td>',htmlspecialchars($row[9]),'</td>';
                                             if($row[6] & PRIV_USER){
                                                 if(time()-strtotime($row[5])<=300)
@@ -134,7 +151,7 @@ $Title=$inTitle .' - '. $oj_name;
                                                 echo '<td><label class="label label-ce">',_('Disabled'),'</label></td>';
                                             echo '<td>',htmlspecialchars($row[7]),'</td>';
                                             echo '<td>',$row[8],'</td>';
-					    echo '<td>',$row[4],'</td>';
+					   
                                             echo '<td><a href="record.php?user_id=',$row[0],'&amp;result=0">',$row[2],'</a></td>';
                                             echo '<td><a href="record.php?user_id=',$row[0],'">',$row[3],'</a></td>';
 
